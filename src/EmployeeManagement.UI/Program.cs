@@ -1,4 +1,4 @@
-namespace EmployeeManagement
+namespace EmployeeManagement.UI
 {
     internal static class Program
     {

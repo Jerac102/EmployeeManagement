@@ -1,4 +1,4 @@
-namespace EmployeeManagement
+namespace EmployeeManagement.UI
 {
     public partial class Form1 : Form
     {
