@@ -76,7 +76,7 @@ public abstract class DatabaseTestBase
             FirstName = "Max",
             LastName = lastName,
             Email = $"{lastName.ToLowerInvariant()}@example.com",
-            HireDate = new DateTime(2024, 1, 15),
+            HireDate = new DateOnly(2024, 1, 15),
             Salary = 50000m,
             DepartmentId = department.Id,
             PositionId = position.Id

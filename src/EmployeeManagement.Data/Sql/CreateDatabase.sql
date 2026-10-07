@@ -34,7 +34,7 @@ CREATE TABLE dbo.Employees
 	FirstName    NVARCHAR(100)     NOT NULL,
 	LastName     NVARCHAR(100)     NOT NULL,
 	Email        NVARCHAR(200)     NULL,
-	HireDate     DATETIME2         NOT NULL,
+	HireDate     DATE              NOT NULL,
 	Salary       DECIMAL(18,2)     NOT NULL,
 	DepartmentId INT               NOT NULL,
 	PositionId   INT               NOT NULL,
@@ -56,4 +56,8 @@ GO
 
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = N'UQ_Employees_Email')
 	CREATE UNIQUE INDEX UQ_Employees_Email ON dbo.Employees (Email) WHERE Email IS NOT NULL;
+GO
+
+IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'dbo.Employees') AND name = N'HireDate' AND system_type_id <> TYPE_ID(N'date'))
+	ALTER TABLE dbo.Employees ALTER COLUMN HireDate DATE NOT NULL;
 GO
