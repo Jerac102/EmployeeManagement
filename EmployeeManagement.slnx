@@ -1,9 +1,13 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/EmployeeManagement.Api/EmployeeManagement.Api.csproj" />
     <Project Path="src/EmployeeManagement.Data/EmployeeManagement.Data.csproj" />
+    <Project Path="src/EmployeeManagement.Shared/EmployeeManagement.Shared.csproj" />
     <Project Path="src/EmployeeManagement.UI/EmployeeManagement.UI.csproj" Id="f058ecdd-4652-4a28-8526-e948d41c81f4" />
+    <Project Path="src/EmployeeManagement.Web/EmployeeManagement.Web.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/EmployeeManagement.Api.Tests/EmployeeManagement.Api.Tests.csproj" />
     <Project Path="tests/EmployeeManagement.Data.Tests/EmployeeManagement.Data.Tests.csproj" />
     <Project Path="tests/EmployeeManagement.UI.Tests/EmployeeManagement.UI.Tests.csproj" />
   </Folder>

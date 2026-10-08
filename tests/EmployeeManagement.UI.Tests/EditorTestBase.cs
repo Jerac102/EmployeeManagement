@@ -1,20 +1,20 @@
 using EmployeeManagement.Data;
 using EmployeeManagement.Data.Entities;
 using EmployeeManagement.Data.Repositories;
-using EmployeeManagement.UI.Models;
-using EmployeeManagement.UI.ViewModels;
+using EmployeeManagement.Shared.Models;
+using EmployeeManagement.Shared.Services;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmployeeManagement.UI.Tests;
 
-public abstract class ViewModelTestBase
+public abstract class EditorTestBase
 {
     private SqliteConnection _connection = null!;
     private ServiceProvider _provider = null!;
 
-    protected EmployeeListViewModel ViewModel { get; private set; } = null!;
+    protected EmployeeEditor ViewModel { get; private set; } = null!;
     protected int DepartmentId { get; private set; }
     protected int PositionId { get; private set; }
 
@@ -44,7 +44,7 @@ public abstract class ViewModelTestBase
             PositionId = position.Id;
         }
 
-        ViewModel = new EmployeeListViewModel(_provider.GetRequiredService<IServiceScopeFactory>());
+        ViewModel = new EmployeeEditor(_provider.GetRequiredService<IServiceScopeFactory>());
     }
 
     [TestCleanup]

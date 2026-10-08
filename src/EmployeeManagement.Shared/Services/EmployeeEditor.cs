@@ -2,18 +2,23 @@ using System.ComponentModel;
 using System.Net.Mail;
 using EmployeeManagement.Data.Entities;
 using EmployeeManagement.Data.Repositories;
-using EmployeeManagement.UI.Models;
+using EmployeeManagement.Shared.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
-namespace EmployeeManagement.UI.ViewModels;
+namespace EmployeeManagement.Shared.Services;
 
-public class EmployeeListViewModel
+public class EmployeeEditor : IEmployeeEditor
 {
     private readonly IServiceScopeFactory _scopeFactory;
 
-    public EmployeeListViewModel(IServiceScopeFactory scopeFactory)
+    private readonly ILogger _logger;
+
+    public EmployeeEditor(IServiceScopeFactory scopeFactory, ILogger<EmployeeEditor>? logger = null)
     {
         _scopeFactory = scopeFactory;
+        _logger = logger ?? NullLogger<EmployeeEditor>.Instance;
     }
 
     public BindingList<EmployeeRow> Rows { get; } = new();
@@ -84,6 +89,8 @@ public class EmployeeListViewModel
             row.AcceptChanges();
             Rows.Add(row);
         }
+
+        _logger.LogInformation("Loaded {EmployeeCount} employees", Rows.Count);
     }
 
     public async Task<SaveResult> SaveAsync(EmployeeRow row, CancellationToken cancellationToken = default)
@@ -91,6 +98,7 @@ public class EmployeeListViewModel
         var error = Validate(row);
         if (error is not null)
         {
+            _logger.LogWarning("Validation failed for employee {EmployeeId}: {Error}", row.Id, error);
             return SaveResult.Failure(error);
         }
 
@@ -117,6 +125,7 @@ public class EmployeeListViewModel
             await repository.SaveChangesAsync(cancellationToken);
             row.Id = employee.Id;
             row.AcceptChanges();
+            _logger.LogInformation("Created employee {EmployeeId}", row.Id);
             return SaveResult.Ok();
         }
 
@@ -130,6 +139,7 @@ public class EmployeeListViewModel
         repository.Update(existing);
         await repository.SaveChangesAsync(cancellationToken);
         row.AcceptChanges();
+        _logger.LogInformation("Updated employee {EmployeeId}", row.Id);
         return SaveResult.Ok();
     }
 
@@ -151,6 +161,7 @@ public class EmployeeListViewModel
 
         repository.Remove(existing);
         await repository.SaveChangesAsync(cancellationToken);
+        _logger.LogInformation("Soft-deleted employee {EmployeeId}", row.Id);
         return SaveResult.Ok();
     }
 

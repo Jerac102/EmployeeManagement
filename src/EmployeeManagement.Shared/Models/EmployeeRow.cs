@@ -1,4 +1,4 @@
-namespace EmployeeManagement.UI.Models;
+namespace EmployeeManagement.Shared.Models;
 
 public sealed class EmployeeRow
 {
