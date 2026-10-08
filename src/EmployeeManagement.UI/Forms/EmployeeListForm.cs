@@ -1,5 +1,5 @@
-using EmployeeManagement.UI.Models;
-using EmployeeManagement.UI.ViewModels;
+using EmployeeManagement.Shared.Models;
+using EmployeeManagement.Shared.Services;
 
 namespace EmployeeManagement.UI.Forms
 {
@@ -9,11 +9,11 @@ namespace EmployeeManagement.UI.Forms
         private static readonly Color DeletedRowColor = Color.FromArgb(250, 220, 220);
         private static readonly Color ModifiedRowColor = Color.FromArgb(255, 248, 196);
 
-        private readonly EmployeeListViewModel _viewModel;
+        private readonly IEmployeeEditor _viewModel;
         private bool _isBusy;
         private bool _closeConfirmed;
 
-        public EmployeeListForm(EmployeeListViewModel viewModel)
+        public EmployeeListForm(IEmployeeEditor viewModel)
         {
             _viewModel = viewModel;
             InitializeComponent();

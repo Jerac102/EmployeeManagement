@@ -1,7 +1,7 @@
 namespace EmployeeManagement.UI.Tests;
 
 [TestClass]
-public class EmployeeListViewModelTests : ViewModelTestBase
+public class EmployeeEditorTests : EditorTestBase
 {
     [TestMethod]
     public async Task LoadAsync_LoadsLookups()

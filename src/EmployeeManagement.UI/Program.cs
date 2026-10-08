@@ -1,6 +1,6 @@
 using EmployeeManagement.Data;
 using EmployeeManagement.UI.Forms;
-using EmployeeManagement.UI.ViewModels;
+using EmployeeManagement.Shared.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,7 +33,7 @@ namespace EmployeeManagement.UI
 
             var services = new ServiceCollection();
             services.AddDataAccess(connectionString);
-            services.AddTransient<EmployeeListViewModel>();
+            services.AddTransient<IEmployeeEditor, EmployeeEditor>();
             services.AddTransient<EmployeeListForm>();
 
             using var provider = services.BuildServiceProvider();

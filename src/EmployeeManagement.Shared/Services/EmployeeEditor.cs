@@ -2,16 +2,16 @@ using System.ComponentModel;
 using System.Net.Mail;
 using EmployeeManagement.Data.Entities;
 using EmployeeManagement.Data.Repositories;
-using EmployeeManagement.UI.Models;
+using EmployeeManagement.Shared.Models;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EmployeeManagement.UI.ViewModels;
+namespace EmployeeManagement.Shared.Services;
 
-public class EmployeeListViewModel
+public class EmployeeEditor : IEmployeeEditor
 {
     private readonly IServiceScopeFactory _scopeFactory;
 
-    public EmployeeListViewModel(IServiceScopeFactory scopeFactory)
+    public EmployeeEditor(IServiceScopeFactory scopeFactory)
     {
         _scopeFactory = scopeFactory;
     }
