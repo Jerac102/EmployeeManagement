@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, services, configuration) => configuration
     .ReadFrom.Configuration(context.Configuration)
     .Enrich.FromLogContext()
+    .WriteTo.Console()
     .WriteTo.File(
         Path.Combine(AppContext.BaseDirectory, "logs", "web-.txt"),
         rollingInterval: RollingInterval.Day,
