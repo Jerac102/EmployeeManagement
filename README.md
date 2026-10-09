@@ -2,6 +2,11 @@
 
 An example project demonstrating some of my programming skills.
 
+Tech Stack:
+- C# and .NET 10
+- MS LocalDb
+- Blazor
+
 ## Development Approach
 
 This project was built using **Augmented Coding**. I didn't write a single line of code myself. Instead, I reviewed the generated code, made architectural decisions, and instructed the AI to follow **Test-Driven Development (TDD)** practices.
